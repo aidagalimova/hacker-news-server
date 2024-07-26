@@ -3,7 +3,7 @@ import { JsonController, Get, Param, Res } from "routing-controllers";
 import { commentService } from "services/commentsService";
 import "reflect-metadata";
 
-@JsonController("/comment")
+@JsonController("/comments")
 export class CommentController {
   @Get("/:id")
   async getCommentsById(@Param("id") id: string, @Res() res: Response) {
