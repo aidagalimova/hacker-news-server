@@ -2,8 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import { useExpressServer } from "routing-controllers";
-import { NewsController } from "controllers/NewsController";
-import { CommentController } from "controllers/CommentController";
+import { CommentController } from "./controllers/commentController";
+import { NewsController } from "./controllers/NewsController";
 
 dotenv.config();
 

@@ -1,8 +1,8 @@
 import { Response } from "express";
 import { JsonController, Get, Param, Res } from "routing-controllers";
 import { ResponseSchema } from "routing-controllers-openapi";
-import { NewsResponseDTO } from "dto/NewsDTO";
-import { newsService } from "services/newsService";
+import { NewsResponseDTO } from "../dto/NewsDTO";
+import { newsService } from "../services/newsService";
 import "reflect-metadata";
 
 @JsonController("/news")
