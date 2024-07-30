@@ -19,7 +19,7 @@ export class NewsResponseDTO {
 
   @IsNumber()
   @IsOptional()
-  user?: string | null;
+  user: string;
 
   @IsUrl()
   @IsOptional()

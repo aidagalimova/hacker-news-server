@@ -15,7 +15,7 @@ class Comment {
 
   @IsString()
   @IsOptional()
-  user: string | null;
+  user: string;
 }
 
 export class CommentsResponseDTO {

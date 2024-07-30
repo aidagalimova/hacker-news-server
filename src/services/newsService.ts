@@ -28,7 +28,7 @@ class NewsService {
           id: news.id,
           title: news.title,
           points: news.points,
-          user: news.user,
+          user: news.user || "unknown",
           date: new Date(news.time * 1e3).toLocaleDateString(),
           timeAgo: news.time_ago,
         }));
@@ -54,7 +54,7 @@ class NewsService {
         id: response.id,
         title: response.title,
         points: response.points,
-        user: response.user,
+        user: response.user || "unknown",
         date: new Date(response.time * 1e3).toLocaleDateString(),
         timeAgo: response.time_ago,
         url: response.url,

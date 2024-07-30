@@ -17,7 +17,7 @@ class CommentService {
         comments: response.comments.map((item) => {
           return {
             id: item.id,
-            user: item.user,
+            user: item.user || "unknown",
             comments: item.comments,
             commentsCount: item.comments_count,
             content: (item.content = item.content),
