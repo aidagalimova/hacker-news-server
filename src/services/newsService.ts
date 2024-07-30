@@ -2,15 +2,8 @@ import axiosInstance from "../api";
 
 class NewsService {
   private async getNewsByPage(page: number) {
-    const response = await axiosInstance
-      .get(`newest/${page}.json`)
-      .then((response) => {
-        return response.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    return response;
+    const response = await axiosInstance.get(`newest/${page}.json`);
+    return response.data;
   }
 
   async getAllNews() {
@@ -21,17 +14,17 @@ class NewsService {
       this.getNewsByPage(4),
     ])
       .then((res) => {
-        return res.flat().slice(0, 100);
-      })
-      .then((res) => {
-        return res.map((news) => ({
-          id: news.id,
-          title: news.title,
-          points: news.points,
-          user: news.user || "unknown",
-          date: new Date(news.time * 1e3).toLocaleDateString(),
-          timeAgo: news.time_ago,
-        }));
+        return res
+          .flat()
+          .slice(0, 100)
+          .map((news) => ({
+            id: news.id,
+            title: news.title,
+            points: news.points,
+            user: news.user || "unknown",
+            date: new Date(news.time * 1e3).toLocaleDateString(),
+            timeAgo: news.time_ago,
+          }));
       })
       .catch((error) => {
         console.log(error);
@@ -40,14 +33,7 @@ class NewsService {
   }
 
   getNewsById = async (id: string) => {
-    const response = await axiosInstance
-      .get(`item/${id}.json`)
-      .then((response) => {
-        return response.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const response = (await axiosInstance.get(`item/${id}.json`)).data;
 
     if (response?.id) {
       const result = {
