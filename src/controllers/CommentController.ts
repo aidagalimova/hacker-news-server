@@ -14,7 +14,7 @@ import { CommentsResponseDTO } from "../dto/CommentsDTO";
 export class CommentController {
   @Get("/:id")
   @ResponseSchema(CommentsResponseDTO)
-  async getCommentsById(@Param("id") id: string, @Res() res: Response) {
+  async getCommentsById(@Param("id") id: string, @Res() _res: Response) {
     const comments = await commentService.getCommentsById(id);
     if (!comments) {
       throw new NotFoundError("Not found");

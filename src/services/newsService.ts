@@ -1,6 +1,9 @@
 import axiosInstance from "../api";
 
 class NewsService {
+  newsLimit = 100;
+  pagesCount = 12;
+
   private async getNewsByPage(page: number) {
     const response = await axiosInstance.get(`newest/${page}.json`);
     return response.data;
@@ -8,24 +11,24 @@ class NewsService {
 
   async getAllNews() {
     try {
-      const result = (
-        await Promise.all([
-          this.getNewsByPage(1),
-          this.getNewsByPage(2),
-          this.getNewsByPage(3),
-          this.getNewsByPage(4),
-        ])
-      )
-        .flat()
-        .slice(0, 100)
-        .map((news) => ({
-          id: news.id,
-          title: news.title,
-          points: news.points,
-          user: news.user || "unknown",
-          date: new Date(news.time * 1e3).toLocaleDateString(),
-          timeAgo: news.time_ago,
-        }));
+      let result = [];
+
+      for (let page = 1; page <= this.pagesCount; page++) {
+        const res = await this.getNewsByPage(page);
+        result.push(...res);
+        if (result.length > this.newsLimit) {
+          break;
+        }
+      }
+      result = result.slice(0, this.newsLimit).map((news) => ({
+        id: news.id,
+        title: news.title,
+        points: news.points,
+        user: news.user || "unknown",
+        date: new Date(news.time * 1e3).toLocaleDateString(),
+        timeAgo: news.time_ago,
+      }));
+
       return result;
     } catch (e) {
       console.log(e);

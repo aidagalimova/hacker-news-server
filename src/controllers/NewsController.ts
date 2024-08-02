@@ -20,7 +20,7 @@ export class NewsController {
 
   @Get("/:id")
   @ResponseSchema(NewsResponseDTO)
-  async getNewsById(@Param("id") id: string, @Res() res: Response) {
+  async getNewsById(@Param("id") id: string, @Res() _res: Response) {
     const news = await newsService.getNewsById(id);
     if (!news) {
       throw new NotFoundError("Not found");

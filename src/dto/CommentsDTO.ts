@@ -8,7 +8,7 @@ class Comment {
   content: string;
 
   @IsNumber()
-  comments_count: number;
+  commentCount: number;
 
   @IsArray()
   comments: Comment[];
