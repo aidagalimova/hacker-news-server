@@ -7,7 +7,7 @@ import { NewsController } from "./controllers/NewsController";
 
 dotenv.config();
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT ? +process.env.PORT : 4000;
 const controllers = [NewsController, CommentController];
 
 const app = createExpressServer({

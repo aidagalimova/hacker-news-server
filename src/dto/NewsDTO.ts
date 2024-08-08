@@ -17,9 +17,9 @@ export class NewsResponseDTO {
   @IsOptional()
   points?: number | null;
 
-  @IsNumber()
+  @IsString()
   @IsOptional()
-  user: string;
+  user?: string;
 
   @IsUrl()
   @IsOptional()
